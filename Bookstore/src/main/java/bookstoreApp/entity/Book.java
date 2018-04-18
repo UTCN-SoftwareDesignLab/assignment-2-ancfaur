@@ -13,17 +13,19 @@ public class Book {
     private String name;
     private Float price;
     private Integer quantity;
+    private String gender;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
-    public Book(String name, Author author, String isbn, Float price, Integer quantity) {
+    public Book(String name, Author author, String isbn, String gender, Float price, Integer quantity) {
         this.name = name;
         this.author = author;
         this.isbn = isbn;
         this.price = price;
         this.quantity = quantity;
+        this.gender = gender;
     }
 
     public Book() {
@@ -75,5 +77,26 @@ public class Book {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", gender='" + gender + '\'' +
+                ", author=" + author +
+                '}';
     }
 }

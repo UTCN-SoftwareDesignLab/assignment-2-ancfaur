@@ -19,12 +19,21 @@ public class BookServiceImpl implements BookService {
     @Autowired
     public BookServiceImpl(BookRepository bookRepository){
         this.bookRepository = bookRepository;
-       // this.authorService = authorService;
     }
 
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public List<Book> findByGender(String gender) {
+        return bookRepository.findByGender(gender);
+    }
+
+    @Override
+    public List<Book> findByName(String name) {
+        return bookRepository.findByName(name);
     }
 
     /*

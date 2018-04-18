@@ -39,9 +39,13 @@ private AuthorService authorService;
         AuthorDto authorDto1 = new AuthorDto();
         authorDto1.name="Mirela";
 
+        AuthorDto authorDto2 = new AuthorDto();
+        authorDto2.name="Ionut";
+
         BookDto bookDto1 = new BookDto();
         bookDto1.authorId= 1;
-        bookDto1.isbn="89562";
+        bookDto1.isbn="12345";
+        bookDto1.gender="romance";
         bookDto1.price=234.6F;
         bookDto1.quantity=100;
         bookDto1.name = "Nu imi place deloc";
@@ -49,14 +53,31 @@ private AuthorService authorService;
 
         BookDto bookDto2 = new BookDto();
         bookDto2.authorId= 1;
-        bookDto2.isbn="89562";
+        bookDto2.gender ="comedy";
+        bookDto2.isbn="23456";
         bookDto2.price=234.6F;
         bookDto2.quantity=100;
-        bookDto2.name = "Nu imi place deloc";
+        bookDto2.name = "la facultatea";
 
+        BookDto bookDto3 = new BookDto();
+        bookDto3.authorId= 1;
+        bookDto3.gender ="comedy";
+        bookDto3.isbn="34567";
+        bookDto3.price=234.6F;
+        bookDto3.quantity=100;
+        bookDto3.name = "asta";
 
         authorService.create(authorDto1);
+        authorService.create(authorDto2);
         authorService.addBookToAuthor(authorDto1, bookDto1);
+        authorService.addBookToAuthor(authorDto2, bookDto2);
+        authorService.addBookToAuthor(authorDto1, bookDto3);
+
+        List<Book> booksGender = bookService.findByGender("romance");
+        List<Book> booksName = bookService.findByName("asta");
+
+        authorService.delete(authorDto1);
+
 
     }
 }

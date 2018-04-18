@@ -9,4 +9,5 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByName(String name);
     List<Book> findByGender(String gender);
+    Book findByIsbn(String isbn);
 }

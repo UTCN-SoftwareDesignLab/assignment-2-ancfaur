@@ -36,11 +36,10 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByName(name);
     }
 
-    /*
-    public void delete(BookDto bookDto){
-        Author author = authorService.findById(bookDto.authorId);
-        Book book = new Book(bookDto.name, author, bookDto.isbn, new Float(bookDto.price), new Integer(bookDto.quantity));
+
+    public void delete(String isbn){
+        Book book =bookRepository.findByIsbn(isbn);
         bookRepository.delete(book);
     }
-*/
+
 }

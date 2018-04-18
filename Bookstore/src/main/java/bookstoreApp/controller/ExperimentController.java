@@ -78,6 +78,8 @@ private AuthorService authorService;
 
         authorService.delete(authorDto1);
 
+        bookService.delete(bookDto2.isbn);
+        authorService.removeBookFromAuthor(authorDto2, bookDto2.isbn);
 
     }
 }

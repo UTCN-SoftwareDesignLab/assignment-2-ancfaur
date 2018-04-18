@@ -1,4 +1,4 @@
-package bookstoreApp.model;
+package bookstoreApp.entity;
 import java.util.List;
 
 public class Role {

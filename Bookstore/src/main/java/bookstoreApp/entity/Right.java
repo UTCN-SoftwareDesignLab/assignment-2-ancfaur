@@ -1,4 +1,4 @@
-package bookstoreApp.model;
+package bookstoreApp.entity;
 
 public class Right {
     private Long id;

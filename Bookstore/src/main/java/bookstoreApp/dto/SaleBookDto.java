@@ -10,4 +10,28 @@ public class SaleBookDto {
 
     @Min(1)
     public int saleQunatity;
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getSaleQunatity() {
+        return saleQunatity;
+    }
+
+    public void setSaleQunatity(int saleQunatity) {
+        this.saleQunatity = saleQunatity;
+    }
 }

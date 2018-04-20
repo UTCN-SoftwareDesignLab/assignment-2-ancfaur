@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html   lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Administator Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Choose operation type</h1>
+<form action="#" th:action="@{/administratorMenu}" method="post">
+    <p><input type="submit" name="userManageBtn" value="User Management" /></p>
+    <p><input type="submit" name="bookManageBtn" value="Book Management" /></p>
+</form>
+</body>
+</html>

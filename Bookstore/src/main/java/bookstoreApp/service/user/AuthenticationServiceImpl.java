@@ -29,9 +29,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public UserDto login(String username, String password) throws AuthenticationException {
-       User user =userRepository.findByUsernameAndPassword(username, encodeService.encode(password));
-       UserDto userDto = userConverter.fromUserToUserDto(user);
-       return userDto;
+    public UserDto login(UserDto userDto) throws AuthenticationException {
+       User user =userRepository.findByUsernameAndPassword(userDto.username, encodeService.encode(userDto.password));
+       UserDto userDtoBack = userConverter.fromUserToUserDto(user);
+       return userDtoBack;
     }
 }

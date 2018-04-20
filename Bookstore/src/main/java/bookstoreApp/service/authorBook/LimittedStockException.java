@@ -1,4 +1,4 @@
-package bookstoreApp.service.author;
+package bookstoreApp.service.authorBook;
 
 public class LimittedStockException extends Exception {
 

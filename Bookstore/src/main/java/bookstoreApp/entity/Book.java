@@ -96,7 +96,7 @@ public class Book {
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", gender='" + gender + '\'' +
-                ", author=" + author +
+                ", authorBook=" + author +
                 '}';
     }
 

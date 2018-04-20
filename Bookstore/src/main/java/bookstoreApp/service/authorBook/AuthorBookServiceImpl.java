@@ -1,4 +1,4 @@
-package bookstoreApp.service.author;
+package bookstoreApp.service.authorBook;
 
 import bookstoreApp.converter.BookAuthorConverter;
 import bookstoreApp.converter.BookAuthorConverterImpl;
@@ -17,13 +17,13 @@ import java.util.*;
 
 @Service
 @Transactional
-public class AuthorServiceImpl implements AuthorService{
+public class AuthorBookServiceImpl implements AuthorBookService {
     AuthorRepository authorRepository;
     BookRepository bookRepository;
     BookAuthorConverter bookAuthorConverter;
 
     @Autowired
-    public AuthorServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public AuthorBookServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.bookAuthorConverter = new BookAuthorConverterImpl();
@@ -40,14 +40,14 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public AuthorDto findById(Long id){
+    public AuthorDto findByIdAuthor(Long id){
     Author author= authorRepository.findById(id).orElse(null);
     AuthorDto authorDto = bookAuthorConverter.fromAuthorToAuthorDto(author);
     return authorDto;
     }
 
     @Override
-    public void create(AuthorDto authorDTO) {
+    public void createAuthor(AuthorDto authorDTO) {
         Set<Book> books = new HashSet<>();
         Author author = bookAuthorConverter.fromAuthorDtoToAuthor(authorDTO);
         author.setBooks(books);
@@ -55,7 +55,15 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public void delete(Long id) {
+    public void updateAuthor(AuthorDto authorDto) {
+        Author author = authorRepository.findById(authorDto.id).get();
+        author.setName(authorDto.name);
+        authorRepository.save(author);
+    }
+
+
+    @Override
+    public void deleteAuthor(Long id) {
         Author author = authorRepository.findById(id).orElse(null);
         authorRepository.delete(author);
     }
@@ -75,11 +83,10 @@ public class AuthorServiceImpl implements AuthorService{
         authorRepository.save(author);
     }
 
-    @Override
-    public void update(AuthorDto authorDto) {
-        Author author = authorRepository.findById(authorDto.id).get();
-        author.setName(authorDto.name);
-        authorRepository.save(author);
+    public void updateBookFromAuthor(BookDto bookDto, Long oldAuthorId){
+        // for also updating the authorBook
+        removeBookFromAuthor(bookDto.id, oldAuthorId);
+        addBookToAuthor(bookDto.authorId, bookDto);
     }
 
     @Override
@@ -99,24 +106,5 @@ public class AuthorServiceImpl implements AuthorService{
        }
     }
 
-    @Override
-    public List<BookDto> listBooksByAuthor(String name) {
-        List<Author> authors = authorRepository.findByName(name);
-        List<BookDto> allBooks = new ArrayList<>();
-        Set<Book> booksForAuthor;
-        for(Author author:authors){
-            booksForAuthor = author.getBooks();
-            for(Book book:booksForAuthor){
-                allBooks.add(bookAuthorConverter.fromBookToBookDto(book));
-            }
-        }
-        return allBooks;
-    }
-
-    public void updateBookFromAuthor(BookDto bookDto, Long oldAuthorId){
-        // for also updating the author
-        removeBookFromAuthor(bookDto.id, oldAuthorId);
-        addBookToAuthor(bookDto.authorId, bookDto);
-    }
 
 }

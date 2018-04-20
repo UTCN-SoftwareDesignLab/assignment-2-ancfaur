@@ -6,6 +6,6 @@ public interface AuthenticationService {
 
     boolean register(UserDto userDto);
 
-    UserDto login(String username, String password) throws AuthenticationException;
+    UserDto login(UserDto userDto) throws AuthenticationException;
 
 }

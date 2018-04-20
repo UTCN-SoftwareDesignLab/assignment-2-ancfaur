@@ -1,65 +1,37 @@
 package bookstoreApp.service.user;
-
+import bookstoreApp.converter.UserConverter;
 import bookstoreApp.dto.UserDto;
-import bookstoreApp.entity.Role;
 import bookstoreApp.entity.User;
 import bookstoreApp.repository.role.RoleRepository;
 import bookstoreApp.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final EncodeService encodeService;
+    private final UserConverter userConverter;
 
     @Autowired
-    public AuthenticationServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public AuthenticationServiceImpl(UserRepository userRepository, RoleRepository roleRepository, EncodeService encodeService, UserConverter userConverter) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+        this.encodeService = encodeService;
+        this.userConverter = userConverter;
     }
 
     @Override
     public boolean register(UserDto userDto) {
-        User user = new User();
-        user.setUsername(userDto.username);
-        user.setPassword(encodePassword(userDto.password));
-        Role role = roleRepository.findByName(userDto.role);
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(role);
-        user.setRoles(roles);
+        userDto.password = encodeService.encode(userDto.password);
+        User user = userConverter.fromUserDtoToUser(userDto);
         userRepository.save(user);
         return true;
     }
 
     @Override
-    public User login(String username, String password) throws AuthenticationException {
-        return userRepository.findByUsernameAndPassword(username, encodePassword(password));
+    public UserDto login(String username, String password) throws AuthenticationException {
+       User user =userRepository.findByUsernameAndPassword(username, encodeService.encode(password));
+       UserDto userDto = userConverter.fromUserToUserDto(user);
+       return userDto;
     }
-
-
-    private String encodePassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes("UTF-8"));
-            StringBuilder hexString = new StringBuilder();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-
-
 }

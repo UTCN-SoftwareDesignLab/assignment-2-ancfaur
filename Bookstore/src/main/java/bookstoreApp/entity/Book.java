@@ -15,8 +15,9 @@ public class Book {
     private Integer quantity;
     private String gender;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "author_id")
     private Author author;
 
     public Book(String name, Author author, String isbn, String gender, Float price, Integer quantity) {
@@ -28,8 +29,7 @@ public class Book {
         this.gender = gender;
     }
 
-    public Book() {
-    }
+    public Book() {}
 
     public String getIsbn() {
         return isbn;
@@ -98,5 +98,22 @@ public class Book {
                 ", gender='" + gender + '\'' +
                 ", author=" + author +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (!(o instanceof User)) {
+            return false;
+        }
+        Book book = (Book) o;
+        return book.getIsbn().equals(this.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + isbn.hashCode();
+        return result;
     }
 }

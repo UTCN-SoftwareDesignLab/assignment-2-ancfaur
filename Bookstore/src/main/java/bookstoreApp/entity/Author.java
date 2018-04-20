@@ -1,10 +1,7 @@
 package bookstoreApp.entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,9 +13,10 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "author",  orphanRemoval=true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author",  orphanRemoval=true)
     private Set<Book> books = new HashSet<>();
 
     private Author() {}
@@ -47,6 +45,16 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public void removeBook(Book book){
+        book.setAuthor(null);
+        books.remove(book);
+    }
+
+    public void addBook(Book book){
+        book.setAuthor(this);
+        books.add(book);
     }
 
     @Override

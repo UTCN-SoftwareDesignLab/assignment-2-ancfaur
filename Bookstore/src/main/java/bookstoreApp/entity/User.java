@@ -13,11 +13,13 @@ public class User {
     private String username;
     private String password;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
+
+    public User() {}
 
     public Long getId() {
         return id;

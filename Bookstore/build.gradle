@@ -27,11 +27,16 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+
+    //for html
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
     compile("org.springframework.boot:spring-boot-devtools")
+
 
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
     compile "org.springframework.boot:spring-boot-starter-data-jpa"
+
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
 

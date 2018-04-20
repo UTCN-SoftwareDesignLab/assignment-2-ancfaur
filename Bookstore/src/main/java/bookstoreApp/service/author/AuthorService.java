@@ -1,15 +1,19 @@
 package bookstoreApp.service.author;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
-import bookstoreApp.entity.Author;
+import bookstoreApp.dto.SaleBookDto;
+
 import java.util.List;
 
 public interface AuthorService {
-    List<Author> getAll();
-    Author findById(int authorId);
-    Author create(AuthorDto authorDto);
-    void delete(AuthorDto authorDto);
-    void addBookToAuthor(AuthorDto authorDto, BookDto bookDto);
-    void removeBookFromAuthor(AuthorDto authorDto, String isbn);
-
+    List<AuthorDto> findAll();
+    AuthorDto findById(Long id);
+    void create(AuthorDto authorDto);
+    void delete(Long id);
+    void addBookToAuthor(Long authorId, BookDto bookDto);
+    void removeBookFromAuthor(Long authorId, Long bookId);
+    void update(AuthorDto authorDto);
+    void sellBookFromAuthor(SaleBookDto saleBookDto) throws LimittedStockException;
+    List<BookDto> listBooksByAuthor(String name);
+    void updateBookFromAuthor(BookDto bookDto, Long oldAuthorId);
 }

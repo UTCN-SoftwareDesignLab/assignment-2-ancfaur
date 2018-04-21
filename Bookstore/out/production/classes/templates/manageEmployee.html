@@ -3,33 +3,35 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Manage employees</title>
+    <title>Employee Management</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <h1>Employee Management</h1>
-<form action="#" th:action="@{/createUser}" th:object="${userDto}" method="post">
+<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
     <p>Username: <input type="text" th:field="*{username}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>If register, insert role: <input type="text" th:field="*{role}" /></p>
+    <p>Role: <input type="text" th:field="*{role}" /></p>
     <p><input type="submit" name="createBtn" value="Create" /></p>
 </form>
 
-<form action="#" th:action="@{/updateUser}" th:object="${userDto}" method="post">
+<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
     <p>Username: <input type="text" th:field="*{username}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>If register, insert role: <input type="text" th:field="*{role}" /></p>
+    <p>Role: <input type="text" th:field="*{role}" /></p>
     <p><input type="submit" name="updateBtn" value="Update" /></p>
 </form>
 
-
-<form action="#" th:action="@{/deleteUser}" th:object="${userDto}" method="post">
+<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
-    <p><input type="submit" name="createBtn" value="Create" /></p>
+    <p><input type="submit" name="deleteBtn" value="Delete" /></p>
 </form>
 
-
+<form action="#" th:action="@{/employeeManagement/showAll}" th:object="${userDto}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" /></p>
+    <p><input type="submit" name="showAllBtn" value="Show all" /></p>
+</form>
 
 </body>
 </html>

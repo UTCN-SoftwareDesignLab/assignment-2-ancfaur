@@ -1,30 +1,31 @@
 package bookstoreApp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value ="/adminMenu")
 public class AdministratorMenuController {
 
-    @Autowired
     public AdministratorMenuController(){}
 
-    @GetMapping(value ="/administatorMenu")
-    public String userForm(Model model) {
+    @GetMapping()
+    @Order(value = 1)
+    public String index() {
         return "administratorMenu";
     }
 
-    @PostMapping(value ="/admistratorMenu", params = "userManageBtn")
+    @PostMapping(params = "userManageBtn")
     public String userManage() {
-        return "manageEmployee";
+        return "redirect:/employeeManagement";
     }
 
-    @PostMapping(value ="/admistratorMenu", params = "bookManageBtn")
+    @PostMapping(params = "bookManageBtn")
     public String bookManage() {
-        return "manageBook";
+        return "redirect:/bookManagement";
     }
 
 

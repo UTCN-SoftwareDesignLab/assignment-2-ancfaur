@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/login")
 public class LoginController { ;
     AuthenticationService authenticationService;
 
@@ -19,19 +21,19 @@ public class LoginController { ;
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping(value ="/login")
+    @GetMapping()
     public String userForm(Model model) {
         model.addAttribute(new UserDto());
         return "login";
     }
 
-    @PostMapping(value ="/login", params = "registerBtn")
+    @PostMapping(params = "registerBtn")
     public String userRegister(@ModelAttribute UserDto userDto) {
         authenticationService.register(userDto);
         return "login";
     }
 
-    @PostMapping(value ="/login", params = "loginBtn")
+    @PostMapping(params = "loginBtn")
     public String userLogin(@ModelAttribute UserDto userDto) {
         String nextPage="login";
         try {
@@ -43,10 +45,10 @@ public class LoginController { ;
         return nextPage;
     }
 
-    public String decideBasedOnRole(UserDto userDto){
+    private String decideBasedOnRole(UserDto userDto){
         switch(userDto.role){
-            case "employee": return "employeeMenu";
-            case "administrator": return "administratorMenu";
+            case "employee": return "redirect:/emplMenu";
+            case "administrator": return "redirect:/adminMenu";
             default: return "login";
         }
     }

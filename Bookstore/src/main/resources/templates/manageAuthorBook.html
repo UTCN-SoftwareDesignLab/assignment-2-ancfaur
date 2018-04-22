@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html   lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Author-Book Management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Author Management</h1>
+<form action="#" th:action="@{/authorBookManagement}" method="post">
+    <p>Name: <input type="text" th:field="*{authorBookDto.authorDto.name}" /></p>
+    <p><input type="submit" name="createAuthorBtn" value="Create author" /></p>
+</form>
+<br />
+
+<form action="#" th:action="@{/authorBookManagement}"   method="post">
+    <p>Id: <input type="text" th:field="*{authorBookDto.authorDto.id}" /></p>
+    <p>Name: <input type="text" th:field="*{authorBookDto.authorDto.name}" /></p>
+    <p><input type="submit" name="updateAuthorBtn" value="Update author" /></p>
+</form>
+<br />
+
+
+<form action="#" th:action="@{/authorBookManagement}"  method="post">
+    <p>Id: <input type="text" th:field="*{authorBookDto.authorDto.id}" /></p>
+    <p><input type="submit" name="deleteAuthorBtn" value="Delete author" /></p>
+</form>
+<br />
+
+
+<form action="#" th:action="@{/authorBookManagement/showAuthors}" method="post">
+    <p><input type="submit" name="showAuthorsBtn" value="Show authors" /></p>
+</form>
+<br />
+
+<h1>Book Management</h1>
+<form action="#" th:action="@{/authorBookManagement}"   method="post">
+    <p>Author id: <input type="text" th:field="*{authorBookDto.bookDto.authorId}" /></p>
+    <p>ISBN: <input type="text" th:field="*{authorBookDto.bookDto.isbn}" /></p>
+    <p>Title: <input type="text" th:field="*{authorBookDto.bookDto.name}" /></p>
+    <p>Genre: <input type="text" th:field="*{authorBookDto.bookDto.genre}" /></p>
+    <p>Quantity: <input type="text" th:field="*{authorBookDto.bookDto.quantity}" /></p>
+    <p>Price: <input type="text" th:field="*{authorBookDto.bookDto.price}" /></p>
+    <p><input type="submit" name="createBookBtn" value="Create book" /></p>
+</form>
+<br />
+
+<form action="#" th:action="@{/authorBookManagement}"   method="post">
+    <p>Book id: <input type="text" th:field="*{authorBookDto.bookDto.id}" /></p>
+    <p>New author id: <input type="text" th:field="*{authorBookDto.bookDto.authorId}" /></p>
+    <p>ISBN: <input type="text" th:field="*{authorBookDto.bookDto.isbn}" /></p>
+    <p>Title: <input type="text" th:field="*{authorBookDto.bookDto.name}" /></p>
+    <p>Genre: <input type="text" th:field="*{authorBookDto.bookDto.genre}" /></p>
+    <p>Quantity: <input type="text" th:field="*{authorBookDto.bookDto.quantity}" /></p>
+    <p>Price: <input type="text" th:field="*{authorBookDto.bookDto.price}" /></p>
+    <p><input type="submit" name="updateBookBtn" value="Update book" /></p>
+</form>
+<br />
+
+<form action="#" th:action="@{/authorBookManagement}"   method="post">
+    <p>Book id: <input type="text" th:field="*{authorBookDto.bookDto.id}" /></p>
+    <p><input type="submit" name="deleteBookBtn" value="Delete book" /></p>
+</form>
+<br />
+
+<form action="#" th:action="@{/authorBookManagement/showBooks}" method="post">
+    <p><input type="submit" name="showBooksBtn" value="Show books" /></p>
+</form>
+<br />
+
+
+<form action="#" th:action="@{/authorBookManagement}" method="post">
+    <p><input type="submit" name="generateReportsBtn" value="Generate reports" /></p>
+</form>
+<br />
+
+</body>
+</html>

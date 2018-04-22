@@ -10,7 +10,7 @@ public class BookDto {
     public Long id;
     public Long authorId;
     public String name;
-    public String gender;
+    public String genre;
     @Pattern(regexp = "^[1-9]+$")
     @Size(min = 5, max = 5, message = "ISBN is the wrong size")
     public String isbn;
@@ -26,7 +26,7 @@ public class BookDto {
         return "BookDto{" +
                 "name='" + name + '\'' +
                 ", authorId=" + authorId +
-                ", gender='" + gender + '\'' +
+                ", genre='" + genre + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
@@ -57,12 +57,12 @@ public class BookDto {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getIsbn() {

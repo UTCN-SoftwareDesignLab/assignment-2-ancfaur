@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All authors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>All authors</h1>
+<form action="#" name="authorTable" th:action="@{/authorTable}" method="post">
+    <table border="2">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="authorDto : ${authorDtos}">
+            <td th:text = "${authorDto.id}"></td>
+            <td th:text="${authorDto.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

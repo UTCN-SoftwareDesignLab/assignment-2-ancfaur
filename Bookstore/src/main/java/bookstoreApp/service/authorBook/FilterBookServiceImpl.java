@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class FilteringServiceImpl implements FilteringService {
+public class FilterBookServiceImpl implements FilterBookService {
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
     private BookAuthorConverter bookAuthorConverter;
 
     @Autowired
-    public FilteringServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, BookAuthorConverter bookAuthorConverter) {
+    public FilterBookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, BookAuthorConverter bookAuthorConverter) {
         this.bookRepository = bookRepository;
         this.bookAuthorConverter = bookAuthorConverter;
         this.authorRepository = authorRepository;
@@ -37,8 +37,8 @@ public class FilteringServiceImpl implements FilteringService {
     }
 
     @Override
-    public List<BookDto> findByGender(String gender) {
-        List<Book> books = bookRepository.findByGender(gender);
+    public List<BookDto> findByGenre(String gender) {
+        List<Book> books = bookRepository.findByGenre(gender);
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : books) {
             bookDtos.add(bookAuthorConverter.fromBookToBookDto(book));

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class BookAuthorConverterImpl implements BookAuthorConverter {
 
     public Book fromBookDtoToBook(BookDto bookDto, Author author){
-        Book book = new Book(bookDto.name, author, bookDto.isbn, bookDto.gender, new Float(bookDto.price), new Integer(bookDto.quantity));
+        Book book = new Book(bookDto.name, author, bookDto.isbn, bookDto.genre, new Float(bookDto.price), new Integer(bookDto.quantity));
         book.setId(bookDto.id);
         return book;
     }
@@ -18,7 +18,7 @@ public class BookAuthorConverterImpl implements BookAuthorConverter {
     public BookDto fromBookToBookDto(Book book){
         BookDto bookDto = new BookDto();
         bookDto.id = book.getId();
-        bookDto.gender = book.getGender();
+        bookDto.genre = book.getGenre();
         bookDto.quantity = book.getQuantity();
         bookDto.name = book.getName();
         bookDto.price = book.getPrice();

@@ -2,6 +2,7 @@ package bookstoreApp.service.authorBook;
 
 import bookstoreApp.converter.BookAuthorConverter;
 import bookstoreApp.converter.BookAuthorConverterImpl;
+import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
 import bookstoreApp.dto.SaleBookDto;
@@ -30,7 +31,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
     }
 
     @Override
-    public List<AuthorDto> findAll() {
+    public List<AuthorDto> findAllAuthors() {
         List<Author> authors= authorRepository.findAll();
         List<AuthorDto> authorDtos = new ArrayList<>();
         for(Author author:authors){
@@ -38,6 +39,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         }
         return authorDtos;
     }
+
 
     @Override
     public AuthorDto findByIdAuthor(Long id){
@@ -69,25 +71,34 @@ public class AuthorBookServiceImpl implements AuthorBookService {
     }
 
     @Override
-    public void addBookToAuthor(Long authorId, BookDto bookDto) {
-        Author author = authorRepository.findById(authorId).orElse(null);
+    public void addBookToAuthor(BookDto bookDto) {
+        Author author = authorRepository.findById(bookDto.authorId).orElse(null);
         Book book = bookAuthorConverter.fromBookDtoToBook(bookDto, author);
         author.addBook(book);
         authorRepository.save(author);
     }
 
-    public void removeBookFromAuthor(Long authorId, Long bookId){
-        Author author = authorRepository.findById(authorId).orElse(null);
-        Book book = bookRepository.findByIdAndAuthorId(authorId, bookId);
+    public void removeBookFromAuthor(Long bookId){
+        Book book = bookRepository.findById(bookId).orElse(null);
+        Author author = authorRepository.findById(book.getAuthor().getId()).orElse(null);
         author.removeBook(book);
         authorRepository.save(author);
     }
 
-    public void updateBookFromAuthor(BookDto bookDto, Long oldAuthorId){
-        // for also updating the authorBook
-        removeBookFromAuthor(bookDto.id, oldAuthorId);
-        addBookToAuthor(bookDto.authorId, bookDto);
+    public void updateBookFromAuthor(BookDto bookDto){
+        Book oldRecord = bookRepository.findById(bookDto.id).orElse(null);
+        removeBookFromAuthor(bookDto.id);
+        addBookToAuthor(bookDto);
     }
+
+     public List<AuthorBookDto> findAllBooksAuthors(){
+       List<AuthorBookDto> authorBookDtos = new ArrayList<>();
+       List<Book> books = bookRepository.findAll();
+       for(Book book:books){
+           authorBookDtos.add(new AuthorBookDto(bookAuthorConverter.fromAuthorToAuthorDto(book.getAuthor()), bookAuthorConverter.fromBookToBookDto(book)));
+       }
+       return authorBookDtos;
+     }
 
     @Override
     public void sellBookFromAuthor(SaleBookDto saleBookDto) throws LimittedStockException {
@@ -99,7 +110,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
            ));
        }else{
            Author author = authorRepository.findById(saleBookDto.authorId).orElse(null);
-           removeBookFromAuthor(saleBookDto.bookId, saleBookDto.authorId);
+           removeBookFromAuthor(saleBookDto.bookId);
            book.setQuantity(book.getQuantity() - saleBookDto.saleQunatity);
            author.addBook(book);
            authorRepository.save(author);

@@ -7,8 +7,9 @@ import bookstoreApp.dto.UserDto;
 import bookstoreApp.entity.Role;
 import bookstoreApp.repository.role.RoleRepository;
 import bookstoreApp.service.authorBook.AuthorBookService;
-import bookstoreApp.service.authorBook.FilteringService;
+import bookstoreApp.service.authorBook.FilterBookService;
 import bookstoreApp.service.authorBook.LimittedStockException;
+import bookstoreApp.service.report.ReportOutOfStockService;
 import bookstoreApp.service.user.AuthenticationService;
 import bookstoreApp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,21 @@ import java.util.List;
 
 @Controller
 public class ExperimentController {
-private FilteringService filteringService;
+private FilterBookService filteringService;
 private AuthorBookService authorBookService;
 private AuthenticationService authenticationService;
 private RoleRepository roleRepository;
 private UserService userService;
+private ReportOutOfStockService reportOutOfStock;
 
     @Autowired
-    public ExperimentController(FilteringService bookservice, AuthorBookService authorBookService, AuthenticationService authenticationService, RoleRepository roleRepository, UserService userService){
+    public ExperimentController(FilterBookService bookservice, AuthorBookService authorBookService, AuthenticationService authenticationService, RoleRepository roleRepository, UserService userService, ReportOutOfStockService reportOutOfStock){
         this.filteringService = bookservice;
         this.authorBookService = authorBookService;
         this.authenticationService = authenticationService;
         this.roleRepository = roleRepository;
         this.userService = userService;
+        this.reportOutOfStock = reportOutOfStock;
 
 
         addAuthors();
@@ -41,19 +44,26 @@ private UserService userService;
         addBooksToAuthors();
 
 
-         sellBook();
+         // sellBook();
 
 
-         updateBook();
+        // updateBook();
 
 
         // booksFilter();
 
 
-        //removeBook();
+        // removeBook();
 
        // removeAuthor();
 
+        try {
+            reportOutOfStock.writeCsvReports();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+/*
         addRoles();
         addUsers();
         Role role = new Role();
@@ -62,7 +72,7 @@ private UserService userService;
 
         deleteUser();
         updateUser();
-
+*/
     }
 
     private void sellBook() {
@@ -108,38 +118,38 @@ private UserService userService;
          BookDto bookDto1 = new BookDto();
          bookDto1.authorId= new Long(1);
          bookDto1.isbn="12345";
-         bookDto1.gender="romance";
+         bookDto1.genre ="romance";
          bookDto1.price=234.6F;
          bookDto1.quantity=100;
          bookDto1.name = "Viata de istoric";
 
          BookDto bookDto2 = new BookDto();
          bookDto2.authorId= new Long(1);
-         bookDto2.gender ="comedy";
+         bookDto2.genre ="comedy";
          bookDto2.isbn="23456";
          bookDto2.price=234.6F;
-         bookDto2.quantity=100;
+         bookDto2.quantity=0;
          bookDto2.name = "Ce de carti";
 
 
          BookDto bookDto3 = new BookDto();
          bookDto3.authorId= new Long(2);
-         bookDto3.gender ="comedy";
+         bookDto3.genre ="comedy";
          bookDto3.isbn="34567";
          bookDto3.price=234.6F;
-         bookDto3.quantity=100;
+         bookDto3.quantity=0;
          bookDto3.name = "Sa ne distram";
 
          // add books to authors
-         authorBookService.addBookToAuthor(new Long(1), bookDto1);
-         authorBookService.addBookToAuthor(new Long(1), bookDto2);
-         authorBookService.addBookToAuthor(new Long(2), bookDto3);
+         authorBookService.addBookToAuthor(bookDto1);
+         authorBookService.addBookToAuthor(bookDto2);
+         authorBookService.addBookToAuthor(bookDto3);
 
      }
 
      private void booksFilter(){
         // filter books
-        List<BookDto> booksGender = filteringService.findByGender("romance");
+        List<BookDto> booksGenre = filteringService.findByGenre("romance");
         List<BookDto> booksName = filteringService.findByName("asta");
         List<BookDto> booksAuthor = filteringService.filterByAuthor("Sabin Faur Andrei");
 
@@ -199,21 +209,18 @@ private UserService userService;
 
     public void updateBook(){
         BookDto bookDto = new BookDto();
-        Long oldAuthorId = new Long(1);
-
         bookDto.id = new Long(1);
         bookDto.authorId = new Long(2);      // new authorBook id
         bookDto.isbn= "12345";
         bookDto.name="ce frumos zambesti";
         bookDto.quantity = 5000;
         bookDto.price = 12.3F;
-        bookDto.gender="drama";
-
-        authorBookService.updateBookFromAuthor(bookDto, oldAuthorId);
+        bookDto.genre ="drama";
+        authorBookService.updateBookFromAuthor(bookDto);
     }
 
     public void removeBook(){
-        authorBookService.removeBookFromAuthor(new Long(1), new Long(1));
+        authorBookService.removeBookFromAuthor( new Long(1));
     }
 
 

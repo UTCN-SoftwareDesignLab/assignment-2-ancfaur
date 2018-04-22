@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All books</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>All books</h1>
+<form action="#" name="bookTable" th:action="@{/bookTable}" method="post">
+    <table border="2">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Author_id</th>
+            <th>Author Name</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="authorBookDto : ${authorBookDtos}">
+            <td th:text = "${authorBookDto.bookDto.id}"></td>
+            <td th:text = "${authorBookDto.bookDto.isbn}"></td>
+            <td th:text = "${authorBookDto.bookDto.name}"></td>
+            <td th:text = "${authorBookDto.bookDto.genre}"></td>
+            <td th:text = "${authorBookDto.bookDto.price}"></td>
+            <td th:text = "${authorBookDto.bookDto.quantity}"></td>
+            <td th:text = "${authorBookDto.authorDto.id}"></td>
+            <td th:text="${authorBookDto.authorDto.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

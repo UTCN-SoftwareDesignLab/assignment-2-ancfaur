@@ -25,7 +25,7 @@ public class AdministratorMenuController {
 
     @PostMapping(params = "bookManageBtn")
     public String bookManage() {
-        return "redirect:/bookManagement";
+        return "redirect:/authorBookManagement";
     }
 
 

@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by Catalysts on 9/9/2015.
  */
 @Entity
-@Table(name = "authorBook")
+@Table(name = "author")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

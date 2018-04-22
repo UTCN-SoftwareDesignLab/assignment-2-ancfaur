@@ -2,31 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c99ecfa1-0bdc-4acf-8e4a-8f8740b735fb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/AuthorBookDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtilsImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/authorTable.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/bookTable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/constants/ApplicationConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/CsvFormater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/FormatFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/Formater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/PdfFormater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/templates/manageBook.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/templates/manageEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/templates/manageEmployee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AdministratorMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AdministratorMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/EmployeeManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/EmployeeManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/converter/BookAuthorConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/converter/BookAuthorConverterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/BookDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/BookDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/repository/book/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/repository/book/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/AuthorBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/AuthorBookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/AuthorBookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/AuthorBookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilteringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilterBookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilteringServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilterBookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manageBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manageEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manageEmployee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtilsImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -52,43 +45,7 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AuthorBookManagementController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manageAuthorBook.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExperimentController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-              <folding>
-                <element signature="method#addRoles#0;class#ExperimentController#0" />
-                <element signature="method#addUsers#0;class#ExperimentController#0" />
-                <element signature="method#updateUser#0;class#ExperimentController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -343,9 +300,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6096075009941" />
+        <entry key="$PROJECT_DIR$" value="6096317521484" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="138630824" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="806309224" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2083459160" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="2111108010" />
       </map>
@@ -546,14 +503,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/launcher/Launcher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/converter/UserConverterImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/user/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/SaleDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/SellBuyBookDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/book/OutOfStockException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/book/BookService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/repository/author/AuthorRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/converter/BookAuthorConverterImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/book/BookServiceImpl.java" />
@@ -571,12 +520,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/employeeTable.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/userTable.html" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AdministratorMenuController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/manageEmployee.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/authorTable.html" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/EmployeeManagementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/BookDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilteringService.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/FilteringServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/dto/AuthorBookDto.java" />
@@ -590,13 +537,23 @@
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/CSVUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/CSVUtilsImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/ReportBookServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/CSVUtilsImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/CSVUtils.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/FormatFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/Formater.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtilsImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/CsvFormater.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/PdfFormater.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockService.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/constants/ApplicationConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html" />
       </list>
     </option>
   </component>
@@ -662,29 +619,7 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="bookstoreApp" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bookstore" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bookstore" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bookstore" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -716,6 +651,7 @@
       <recent name="bookstoreApp" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="bookstoreApp.service.report" />
       <recent name="bookstoreApp.service.book" />
       <recent name="bookstoreApp.service.user" />
     </key>
@@ -903,7 +839,7 @@
       <workItem from="1524293753537" duration="6096000" />
       <workItem from="1524308287729" duration="5948000" />
       <workItem from="1524340355150" duration="8085000" />
-      <workItem from="1524392389300" duration="12579000" />
+      <workItem from="1524392389300" duration="23338000" />
     </task>
     <task id="LOCAL-00001" summary="i have a book!">
       <created>1524075558714</created>
@@ -947,15 +883,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524316233250</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="csv report">
+      <created>1524407433347</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1524407433347</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136658000" />
+    <option name="totallyTimeSpent" value="147417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1522694" side_tool="true" weight="0.5214626" />
@@ -963,6 +905,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.58505565" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -975,10 +918,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8477306" visible="true" weight="0.19872814" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8477306" visible="true" weight="0.2845787" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.23279649" weight="0.3290938" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25036603" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25036603" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Learn" order="2" />
@@ -988,7 +931,6 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.41335455" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49926794" weight="0.3783784" />
@@ -1008,7 +950,8 @@
     <MESSAGE value="better service partition" />
     <MESSAGE value="login form works" />
     <MESSAGE value="employeeManage forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="employeeManage forms" />
+    <MESSAGE value="csv report" />
+    <option name="LAST_COMMIT_MESSAGE" value="csv report" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1016,43 +959,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/user/AuthenticationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/role/RoleService.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/src.zip!/java/lang/Exception.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/authorBook/LimittedStockException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/user/EncodeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/controller/BookManagementController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/converter/UserConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1271,17 +1177,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="method#addBook#0;class#Author#0" />
-            <element signature="method#toString#0;class#Author#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/authorTable.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -1300,13 +1195,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="62">
           <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1351,13 +1239,49 @@
     <entry file="file://$PROJECT_DIR$/reports/maria.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="43" column="53" lean-forward="true" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+        <state relative-caret-position="219">
+          <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Author.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="64" column="1" lean-forward="true" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+          <folding>
+            <element signature="method#addBook#0;class#Author#0" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/entity/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtilsImpl.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.pdfbox/pdfbox/2.0.1/a2d6d621becbae9b12297524197d5e61371455a4/pdfbox-2.0.1-sources.jar!/org/apache/pdfbox/pdmodel/PDPageContentStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="389" selection-start-line="389" selection-end-line="389" />
         </state>
       </provider>
     </entry>
@@ -1368,30 +1292,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtilsImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/CsvFormater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/csv/CSVUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/ReportOutOfStockServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="34">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/Formater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/FormatFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/controller/ExperimentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
+        <state relative-caret-position="147">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
           <folding>
             <element signature="method#addRoles#0;class#ExperimentController#0" />
             <element signature="method#addUsers#0;class#ExperimentController#0" />
@@ -1400,17 +1343,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/constants/ApplicationConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/service/report/PdfFormater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="16" column="47" lean-forward="true" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/manageAuthorBook.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="266">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bookstoreApp/controller/AuthorBookManagementController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+        <state relative-caret-position="249">
+          <caret line="90" column="48" lean-forward="true" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -57,11 +57,6 @@ private ReportOutOfStockService reportOutOfStock;
 
        // removeAuthor();
 
-        try {
-            reportOutOfStock.writeCsvReports();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
 /*
         addRoles();

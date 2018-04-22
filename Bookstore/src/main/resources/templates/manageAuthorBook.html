@@ -71,6 +71,9 @@
 
 
 <form action="#" th:action="@{/authorBookManagement}" method="post">
+    <select name="formatType">
+        <option th:each="format : ${formats}" th:text="${format}"></option>
+    </select>
     <p><input type="submit" name="generateReportsBtn" value="Generate reports" /></p>
 </form>
 <br />

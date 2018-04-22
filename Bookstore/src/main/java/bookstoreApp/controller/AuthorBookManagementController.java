@@ -1,5 +1,6 @@
 package bookstoreApp.controller;
 
+import bookstoreApp.constants.ApplicationConstants;
 import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.service.authorBook.AuthorBookService;
@@ -26,6 +27,7 @@ public class AuthorBookManagementController {
     @GetMapping()
     public String authorBookForm(Model model) {
         model.addAttribute(new AuthorBookDto());
+        model.addAttribute("formats", ApplicationConstants.Formats.FORMATS);
         return "manageAuthorBook";
     }
 
@@ -80,9 +82,9 @@ public class AuthorBookManagementController {
     }
 
     @PostMapping(params = "generateReportsBtn")
-    public String generateReports() {
+    public String generateReports(@RequestParam String formatType) {
         try {
-            reportOutOfStockService.writeCsvReports();
+            reportOutOfStockService.writeOutOfStockReport(formatType);
         } catch (Exception e) {
             e.printStackTrace();
         }

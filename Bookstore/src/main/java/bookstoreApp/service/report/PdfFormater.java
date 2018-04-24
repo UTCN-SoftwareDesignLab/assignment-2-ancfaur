@@ -5,11 +5,13 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class PdfFormater implements Formater {
     @Override
     public void formatBooks(List<Book> books) throws IOException {

@@ -9,10 +9,25 @@
 <body>
 <h1>Authentication</h1>
 <form action="#" th:action="@{/login}" th:object="${userDto}" method="post">
-    <p>Username: <input type="text" th:field="*{username}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>If register, insert role: <input type="text" th:field="*{role}" /></p>
-    <p><input type="submit" name="loginBtn" value="Login" /><input type="submit" name="registerBtn" value="Register" /></p>
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" th:field="*{username}" /></td>
+            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="text" th:field="*{password}" /></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        </tr>
+    </table>
+
+    <select name="selRole">
+            <option th:each="role : ${roles}" th:text="${role}"></option> </select>
+
+    <p><input type="submit" name="loginBtn" value="Login" /></p>
+    <p><input type="submit" name="registerBtn" value="Register" /></p>
+
 </form>
 </body>
 </html>

@@ -6,19 +6,21 @@ import javax.validation.constraints.Size;
 
 
 public class BookDto {
-    @Size(min = 1)
     public Long id;
+    @Min(1)
     public Long authorId;
+    @Size(min = 1,  message = "Title is mandatory")
     public String name;
+    @Pattern(regexp = "^[a-zA-Z\\s]+", message="Genre is invalid, it should only contain letters")
     public String genre;
-    @Pattern(regexp = "^[1-9]+$")
-    @Size(min = 5, max = 5, message = "ISBN is the wrong size")
+    @Pattern(regexp = "^[1-9]+$", message = "ISBN should only contain digits" )
+    @Size(min = 5, max = 5, message = "ISBN must have a length of 5")
     public String isbn;
 
-    @Min(0)
+    @Min(value = 0, message = "The quantity should be a positive integer")
     public int quantity;
 
-    @Min(0)
+    @Min(value = 0, message = "The price should be a positive integer")
     public float price;
 
     @Override

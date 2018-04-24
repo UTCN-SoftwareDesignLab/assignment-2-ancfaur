@@ -20,12 +20,12 @@ public class AdministratorMenuController {
 
     @PostMapping(params = "userManageBtn")
     public String userManage() {
-        return "redirect:/employeeManagement";
+        return "redirect:/manageEmployee";
     }
 
     @PostMapping(params = "bookManageBtn")
     public String bookManage() {
-        return "redirect:/authorBookManagement";
+        return "redirect:/manageAuthorBook";
     }
 
 

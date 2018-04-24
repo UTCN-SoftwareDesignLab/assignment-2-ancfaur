@@ -1,15 +1,21 @@
 package bookstoreApp.dto;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 public class SaleBookDto {
-    @NotNull(message = "Book isbn is mandatory")
     public Long bookId;
-    public Long authorId;
+    @Min(value = 1, message = "The quantity should be a strictly positive integer")
+    public int saleQuantity;
 
-    @Min(1)
-    public int saleQunatity;
+    public float price;
+
+    public int getSaleQuantity() {
+        return saleQuantity;
+    }
+
+    public void setSaleQuantity(int saleQuantity) {
+        this.saleQuantity = saleQuantity;
+    }
 
     public Long getBookId() {
         return bookId;
@@ -19,19 +25,11 @@ public class SaleBookDto {
         this.bookId = bookId;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public float getPrice() {
+        return price;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    public int getSaleQunatity() {
-        return saleQunatity;
-    }
-
-    public void setSaleQunatity(int saleQunatity) {
-        this.saleQunatity = saleQunatity;
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

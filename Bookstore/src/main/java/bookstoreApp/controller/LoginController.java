@@ -1,19 +1,22 @@
 package bookstoreApp.controller;
 
+import bookstoreApp.constants.ApplicationConstants;
 import bookstoreApp.dto.UserDto;
 import bookstoreApp.service.user.AuthenticationException;
 import bookstoreApp.service.user.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value="/login")
-public class LoginController { ;
+public class LoginController implements WebMvcConfigurer { ;
     AuthenticationService authenticationService;
 
     @Autowired
@@ -21,14 +24,31 @@ public class LoginController { ;
         this.authenticationService = authenticationService;
     }
 
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+    }
+
     @GetMapping()
     public String userForm(Model model) {
         model.addAttribute(new UserDto());
+        model.addAttribute("roles", ApplicationConstants.Roles.ROLES);
         return "login";
     }
 
+    public void reintroduceAttributes(Model model, UserDto userDto){
+        model.addAttribute(userDto);
+        model.addAttribute("roles", ApplicationConstants.Roles.ROLES);
+    }
+
     @PostMapping(params = "registerBtn")
-    public String userRegister(@ModelAttribute UserDto userDto) {
+    public String userRegister(@RequestParam String selRole, @ModelAttribute @Valid UserDto userDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            reintroduceAttributes(model, userDto);
+            return "login";
+        }
+        userDto.role=selRole;
+        reintroduceAttributes(model, userDto);
         authenticationService.register(userDto);
         return "login";
     }
@@ -47,7 +67,7 @@ public class LoginController { ;
 
     private String decideBasedOnRole(UserDto userDto){
         switch(userDto.role){
-            case "employee": return "redirect:/emplMenu";
+            case "employee": return "redirect:/employeeMenu";
             case "administrator": return "redirect:/adminMenu";
             default: return "login";
         }

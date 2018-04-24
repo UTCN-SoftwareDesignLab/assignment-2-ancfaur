@@ -1,5 +1,6 @@
 package bookstoreApp.service.report;
 import bookstoreApp.entity.Book;
+import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class CsvFormater implements Formater {
     private static final char DEFAULT_SEPARATOR = ',';
 

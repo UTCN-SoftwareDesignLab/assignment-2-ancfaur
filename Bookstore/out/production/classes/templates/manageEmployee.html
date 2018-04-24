@@ -8,27 +8,39 @@
 </head>
 <body>
 <h1>Employee Management</h1>
-<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
-    <p>Username: <input type="text" th:field="*{username}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>Role: <input type="text" th:field="*{role}" /></p>
-    <p><input type="submit" name="createBtn" value="Create" /></p>
-</form>
+<form action="#" th:action="@{/manageEmployee}" th:object="${userDto}" method="post">
+    <table>
+        <tr>
+        <td>If update, introduce id:</td>
+        <td><input type="text" th:field="*{id}" /></td>
+    </tr>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" th:field="*{username}" /></td>
+            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="text" th:field="*{password}" /></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        </tr>
+    </table>
 
-<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
-    <p>Id: <input type="text" th:field="*{id}" /></p>
-    <p>Username: <input type="text" th:field="*{username}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>Role: <input type="text" th:field="*{role}" /></p>
+    <p>Role:</p>
+    <select name="selRole">
+        <option th:each="role : ${roles}" th:text="${role}"></option> </select>
+
+    <p><input type="submit" name="createBtn" value="Create" /></p>
     <p><input type="submit" name="updateBtn" value="Update" /></p>
 </form>
 
-<form action="#" th:action="@{/employeeManagement}" th:object="${userDto}" method="post">
+
+<form action="#" th:action="@{/manageEmployee}" th:object="${userDto}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
     <p><input type="submit" name="deleteBtn" value="Delete" /></p>
 </form>
 
-<form action="#" th:action="@{/employeeManagement/showAll}" th:object="${userDto}" method="post">
+<form action="#" th:action="@{/manageEmployee/showAll}" th:object="${userDto}" method="post">
     <p><input type="submit" name="showAllBtn" value="Show all" /></p>
 </form>
 

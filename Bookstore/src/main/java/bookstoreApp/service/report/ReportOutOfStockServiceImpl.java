@@ -12,11 +12,13 @@ import java.util.List;
 public class ReportOutOfStockServiceImpl implements ReportOutOfStockService {
     private BookRepository bookRepository;
     private Formater formater;
+    private FormatDelegator formatDelegator;
 
 
     @Autowired
-    public ReportOutOfStockServiceImpl(BookRepository bookRepository){
+    public ReportOutOfStockServiceImpl(BookRepository bookRepository, FormatDelegator formatDelegator){
         this.bookRepository = bookRepository;
+        this.formatDelegator = formatDelegator;
     }
 
     private List<Book> findBooksOutOfStock(){
@@ -24,7 +26,7 @@ public class ReportOutOfStockServiceImpl implements ReportOutOfStockService {
     }
 
     public void writeOutOfStockReport(String reportType) throws IOException {
-        formater= FormatFactory.selectFormat(reportType);
+        formater= formatDelegator.selectFormat(reportType);
         formater.formatBooks(findBooksOutOfStock());
     }
 

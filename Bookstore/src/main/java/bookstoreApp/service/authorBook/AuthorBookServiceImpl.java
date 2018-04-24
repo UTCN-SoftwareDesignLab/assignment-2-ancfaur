@@ -5,7 +5,6 @@ import bookstoreApp.converter.BookAuthorConverterImpl;
 import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
-import bookstoreApp.dto.SaleBookDto;
 import bookstoreApp.entity.Author;
 import bookstoreApp.entity.Book;
 import bookstoreApp.repository.author.AuthorRepository;
@@ -14,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -99,23 +101,6 @@ public class AuthorBookServiceImpl implements AuthorBookService {
        }
        return authorBookDtos;
      }
-
-    @Override
-    public void sellBookFromAuthor(SaleBookDto saleBookDto) throws LimittedStockException {
-       Book book = bookRepository.findById(saleBookDto.bookId).orElse(null);
-       if (book.getQuantity()<saleBookDto.saleQunatity){
-           throw(new LimittedStockException("Limitted stock on book with ISBN =" + book.getIsbn()+"\n"
-                   + "in stock = "+ book.getQuantity()+"\n"
-                   + "required ="+saleBookDto.saleQunatity+"\n"
-           ));
-       }else{
-           Author author = authorRepository.findById(saleBookDto.authorId).orElse(null);
-           removeBookFromAuthor(saleBookDto.bookId);
-           book.setQuantity(book.getQuantity() - saleBookDto.saleQunatity);
-           author.addBook(book);
-           authorRepository.save(author);
-       }
-    }
 
 
 }

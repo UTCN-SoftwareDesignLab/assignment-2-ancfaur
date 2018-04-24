@@ -1,10 +1,10 @@
 package bookstoreApp.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class AuthorDto {
     public Long id;
-    @NotNull(message = "Author is mandatory")
+    @Pattern(regexp = "^[a-zA-Z\\s]+", message="Author name is invalid, it should only contain letters")
     public String name;
 
     public Long getId() {

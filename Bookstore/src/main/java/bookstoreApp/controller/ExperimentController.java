@@ -1,21 +1,18 @@
 package bookstoreApp.controller;
 
+import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
-import bookstoreApp.dto.SaleBookDto;
 import bookstoreApp.dto.UserDto;
 import bookstoreApp.entity.Role;
 import bookstoreApp.repository.role.RoleRepository;
 import bookstoreApp.service.authorBook.AuthorBookService;
-import bookstoreApp.service.authorBook.FilterBookService;
-import bookstoreApp.service.authorBook.LimittedStockException;
+import bookstoreApp.service.filter.FilterBookService;
 import bookstoreApp.service.report.ReportOutOfStockService;
 import bookstoreApp.service.user.AuthenticationService;
 import bookstoreApp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -50,7 +47,7 @@ private ReportOutOfStockService reportOutOfStock;
         // updateBook();
 
 
-        // booksFilter();
+         booksFilter();
 
 
         // removeBook();
@@ -58,7 +55,7 @@ private ReportOutOfStockService reportOutOfStock;
        // removeAuthor();
 
 
-/*
+
         addRoles();
         addUsers();
         Role role = new Role();
@@ -67,21 +64,27 @@ private ReportOutOfStockService reportOutOfStock;
 
         deleteUser();
         updateUser();
-*/
+
     }
 
-    private void sellBook() {
-        SaleBookDto saleBookDto = new SaleBookDto();
-        saleBookDto.bookId = new Long(1);
-        saleBookDto.authorId = new Long(1);
-        saleBookDto.saleQunatity = 20;
-        try {
-           authorBookService.sellBookFromAuthor(saleBookDto);
-        } catch (LimittedStockException e) {
-            System.out.println(e.getMessage());
+    private void booksFilter() {
+    List<AuthorBookDto> authorBookDtos =filteringService.filterByTitleAndGenreAndAuthor("comedy");
+    System.out.println("******************************"+authorBookDtos.size()+"*******************");
+    }
+
+    /*
+        private void sellBook() {
+            SaleBookDto saleBookDto = new SaleBookDto();
+            saleBookDto.bookId = new Long(1);
+            saleBookDto.authorId = new Long(1);
+            saleBookDto.saleQunatity = 20;
+            try {
+               authorBookService.sellBookFromAuthor(saleBookDto);
+            } catch (LimittedStockException e) {
+                System.out.println(e.getMessage());
+            }
         }
-    }
-
+    */
     private void updateAuthor() {
         AuthorDto authorDto = new AuthorDto();
         authorDto.id = new Long(1);
@@ -89,13 +92,6 @@ private ReportOutOfStockService reportOutOfStock;
         authorBookService.updateAuthor(authorDto);
     }
 
-    @GetMapping("/books")
-    public String findAll(Model model) {
-        // returneaza fisieru html pe care il vrem in browser
-        final List<BookDto> books = filteringService.findAll();
-        model.addAttribute("booksCount", books.size());
-        return "bookExperiments";
-    }
 
      public void addAuthors(){
         AuthorDto authorDto1 = new AuthorDto();
@@ -104,9 +100,13 @@ private ReportOutOfStockService reportOutOfStock;
         AuthorDto authorDto2 = new AuthorDto();
         authorDto2.name="Simedru Vlad";
 
+        AuthorDto authorDto3 = new AuthorDto();
+        authorDto3.name="Florin comedy Vlad";
+
         // create authors
         authorBookService.createAuthor(authorDto1);
         authorBookService.createAuthor(authorDto2);
+        authorBookService.createAuthor(authorDto3);
     }
 
      public void addBooksToAuthors(){
@@ -116,7 +116,7 @@ private ReportOutOfStockService reportOutOfStock;
          bookDto1.genre ="romance";
          bookDto1.price=234.6F;
          bookDto1.quantity=100;
-         bookDto1.name = "Viata de istoric";
+         bookDto1.name = "Viata de istoric e comedy";
 
          BookDto bookDto2 = new BookDto();
          bookDto2.authorId= new Long(1);
@@ -129,33 +129,30 @@ private ReportOutOfStockService reportOutOfStock;
 
          BookDto bookDto3 = new BookDto();
          bookDto3.authorId= new Long(2);
-         bookDto3.genre ="comedy";
+         bookDto3.genre ="thriller";
          bookDto3.isbn="34567";
          bookDto3.price=234.6F;
          bookDto3.quantity=0;
          bookDto3.name = "Sa ne distram";
 
+         BookDto bookDto4= new BookDto();
+         bookDto4.authorId= new Long(3);
+         bookDto4.genre ="castravete";
+         bookDto4.isbn="54323";
+         bookDto4.price=23.6F;
+         bookDto4.quantity=3232;
+         bookDto4.name = "Trala comedy";
+
+
          // add books to authors
          authorBookService.addBookToAuthor(bookDto1);
          authorBookService.addBookToAuthor(bookDto2);
          authorBookService.addBookToAuthor(bookDto3);
+         authorBookService.addBookToAuthor(bookDto4);
 
      }
 
-     private void booksFilter(){
-        // filter books
-        List<BookDto> booksGenre = filteringService.findByGenre("romance");
-        List<BookDto> booksName = filteringService.findByName("asta");
-        List<BookDto> booksAuthor = filteringService.filterByAuthor("Sabin Faur Andrei");
 
-        /*
-        System.out.println("\n\n\n\n");
-        for(BookDto bookDto:booksAuthor){
-            System.out.print(bookDto.toString());
-        }
-        System.out.println("\n\n\n\n");
-        */
-    }
 
     public void removeAuthor(){
         authorBookService.deleteAuthor(new Long(2));

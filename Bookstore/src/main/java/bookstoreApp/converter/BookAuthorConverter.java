@@ -10,5 +10,4 @@ public interface BookAuthorConverter {
     public BookDto fromBookToBookDto(Book book);
     public Author fromAuthorDtoToAuthor(AuthorDto authorDto);
     public AuthorDto fromAuthorToAuthorDto(Author author);
-
 }

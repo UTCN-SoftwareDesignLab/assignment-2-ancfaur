@@ -1,16 +1,17 @@
 package bookstoreApp.dto;
 
+import javax.validation.constraints.Pattern;
+
 public class UserDto {
 
     public Long id;
 
-   // @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message="That is not a valid username")
     public String username;
 
-   // @Pattern(regexp ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
+    @Pattern(regexp ="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", message="The password should contain at least 8 characters, at least one digit, at least one uppercase letter, one at least one lowercase letter")
     public String password;
 
-    //@NotNull(message = "Role is mandatory")
     public String role;
 
     public Long getId() {

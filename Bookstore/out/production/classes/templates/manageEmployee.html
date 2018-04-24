@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Employee Management</h1>
-<form action="#" th:action="@{/manageEmployee}" th:object="${userDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/admin/manageEmployee}" th:object="${userDto}" method="post">
     <table>
         <tr>
         <td>If update, introduce id:</td>
@@ -35,13 +35,17 @@
 </form>
 
 
-<form action="#" th:action="@{/manageEmployee}" th:object="${userDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/admin/manageEmployee}" th:object="${userDto}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
     <p><input type="submit" name="deleteBtn" value="Delete" /></p>
 </form>
 
-<form action="#" th:action="@{/manageEmployee/showAll}" th:object="${userDto}" method="post">
+<form action="#" th:action="@{/admin/manageEmployee/showAll}" th:object="${userDto}" method="post">
     <p><input type="submit" name="showAllBtn" value="Show all" /></p>
+</form>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" name="logoutBtn" value="Log Out"/>
 </form>
 
 </body>

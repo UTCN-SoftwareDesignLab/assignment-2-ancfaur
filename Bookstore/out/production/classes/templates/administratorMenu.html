@@ -8,9 +8,14 @@
 </head>
 <body>
 <h1>Choose operation type</h1>
-<form action="#" name="adminMenu" th:action="@{/adminMenu}" method="post">
+<form action="#" name="adminMenu" th:action="@{/admin/adminMenu}" method="post">
     <p><input type="submit" name="userManageBtn" value="User Management" /></p>
     <p><input type="submit" name="bookManageBtn" value="Book Management" /></p>
 </form>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" name="logoutBtn" value="Log Out"/>
+</form>
+
 </body>
 </html>

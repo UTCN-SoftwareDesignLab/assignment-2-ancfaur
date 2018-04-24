@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Sale Summary</h1>
-<form action="#" th:action="@{/login}" th:object="${newSaleBookDto}" method="post">
+<form action="#" th:action="@{/empl/login}" th:object="${newSaleBookDto}" method="post">
     <p>Book id: <input type="text" th:field="*{bookId}" /></p>
     <p>Quantity: <input type="text" th:field="*{saleQuantity}" /></p>
     <p>Price: <input type="text" th:field="*{price}" /></p>

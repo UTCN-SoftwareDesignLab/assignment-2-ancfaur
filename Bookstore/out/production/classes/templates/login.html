@@ -1,33 +1,20 @@
-<!DOCTYPE HTML>
-<html   lang="en"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Login Session</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Spring Security Example </title>
 </head>
 <body>
-<h1>Authentication</h1>
-<form action="#" th:action="@{/login}" th:object="${userDto}" method="post">
-    <table>
-        <tr>
-            <td>Username:</td>
-            <td><input type="text" th:field="*{username}" /></td>
-            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="text" th:field="*{password}" /></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
-        </tr>
-    </table>
-
-    <select name="selRole">
-            <option th:each="role : ${roles}" th:text="${role}"></option> </select>
-
-    <p><input type="submit" name="loginBtn" value="Login" /></p>
-    <p><input type="submit" name="registerBtn" value="Register" /></p>
-
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
 </form>
 </body>
 </html>

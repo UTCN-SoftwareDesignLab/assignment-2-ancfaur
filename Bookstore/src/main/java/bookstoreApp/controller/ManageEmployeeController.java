@@ -5,18 +5,22 @@ import bookstoreApp.dto.UserDto;
 import bookstoreApp.service.user.AuthenticationService;
 import bookstoreApp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/manageEmployee")
+@RequestMapping(value="/admin/manageEmployee")
 public class ManageEmployeeController implements WebMvcConfigurer {
     AuthenticationService authenticationService;
     UserService userService;
@@ -27,10 +31,6 @@ public class ManageEmployeeController implements WebMvcConfigurer {
         this.userService = userService;
 }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/manageEmployee").setViewName("manageEmployee");
-    }
 
     @GetMapping()
     public String userForm(Model model) {
@@ -47,7 +47,7 @@ public class ManageEmployeeController implements WebMvcConfigurer {
         }
         userDto.role= selRole;
         authenticationService.register(userDto);
-        return "redirect:/manageEmployee";
+        return "redirect:/admin/manageEmployee";
     }
 
     @PostMapping(params = "updateBtn")
@@ -58,13 +58,13 @@ public class ManageEmployeeController implements WebMvcConfigurer {
         }
         userDto.role= selRole;
         userService.update(userDto);
-        return "redirect:/manageEmployee";
+        return "redirect:/admin/manageEmployee";
     }
 
     @PostMapping(params = "deleteBtn")
     public String deleteUser(@ModelAttribute UserDto userDto) {
         userService.delete(userDto.id);
-        return "redirect:/manageEmployee";
+        return "redirect:/admin/manageEmployee";
     }
 
     @PostMapping(value = "/showAll", params = "showAllBtn")
@@ -72,6 +72,15 @@ public class ManageEmployeeController implements WebMvcConfigurer {
         List<UserDto> userDtos = userService.findAll();
         model.addAttribute("userDtos", userDtos);
         return "userTable";
+    }
+
+    @PostMapping(value = "/logout", params="logoutBtn")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
     }
 
 }

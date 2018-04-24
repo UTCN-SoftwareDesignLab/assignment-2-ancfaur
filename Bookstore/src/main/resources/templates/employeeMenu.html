@@ -7,23 +7,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<form action="#" th:action="@{/employeeMenu/showAllBooks}" method="post">
+<form action="#" th:action="@{/empl/employeeMenu/showAllBooks}" method="post">
     <p><input type="submit" name="showAllBooksBtn" value="Show all books" /></p>
 </form>
 <br />
 
-<form action="#" th:action="@{/employeeMenu}" th:object="${saleBookDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/empl/employeeMenu}" th:object="${saleBookDto}" method="post">
     <p>Book id: <input type="text" th:field="*{bookId}" /></p>
     <p>Quantity: <input type="text" th:field="*{saleQuantity}" /></p>
     <p th:if="${#fields.hasErrors('saleQuantity')}" th:errors="*{saleQuantity}">Isbn Error</p>
     <p><input type="submit" name="sellOneBookTypeBtn" value="Sell" /></p>
 </form>
 
-<form action="#" th:action="@{/employeeMenu}" th:object="${filterDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/empl/employeeMenu}" th:object="${filterDto}" method="post">
     <p>Keyword (for author, title, genre): <input type="text" th:field="*{common}" /></p>
     <p><input type="submit" name="filterBtn" value="Filter" /></p>
 </form>
 <br />
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" name="logoutBtn" value="Log Out"/>
+</form>
 
 </body>
 </html>

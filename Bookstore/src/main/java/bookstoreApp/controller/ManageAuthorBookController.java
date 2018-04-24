@@ -7,18 +7,22 @@ import bookstoreApp.dto.BookDto;
 import bookstoreApp.service.authorBook.AuthorBookService;
 import bookstoreApp.service.report.ReportOutOfStockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/manageAuthorBook")
+@RequestMapping(value="/admin/manageAuthorBook")
 public class ManageAuthorBookController implements WebMvcConfigurer {
     private AuthorBookService authorBookService;
     private ReportOutOfStockService reportOutOfStockService;
@@ -27,11 +31,6 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
     public ManageAuthorBookController(AuthorBookService authorBookService, ReportOutOfStockService reportOutOfStockService) {
         this.authorBookService = authorBookService;
         this.reportOutOfStockService = reportOutOfStockService;
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/manageAuthorBook").setViewName("manageAuthorBook");
     }
 
     @GetMapping()
@@ -61,7 +60,7 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
             return "manageAuthorBook";
         }
         authorBookService.createAuthor(authorDto);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(params = "updateAuthorBtn")
@@ -71,13 +70,13 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
             return "manageAuthorBook";
         }
         authorBookService.updateAuthor(authorDto);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(params = "deleteAuthorBtn")
     public String deleteAuthor(@ModelAttribute AuthorDto authorDto) {
         authorBookService.deleteAuthor(authorDto.id);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(value = "/showAuthors", params = "showAuthorsBtn")
@@ -94,7 +93,7 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
             return "manageAuthorBook";
         }
         authorBookService.addBookToAuthor(bookDto);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(params = "updateBookBtn")
@@ -104,13 +103,13 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
             return "manageAuthorBook";
         }
         authorBookService.updateBookFromAuthor(bookDto);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(params = "deleteBookBtn")
     public String deleteBook(@ModelAttribute BookDto bookDto) {
         authorBookService.removeBookFromAuthor(bookDto.id);
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
     }
 
     @PostMapping(value = "/showBooks", params = "showBooksBtn")
@@ -127,6 +126,15 @@ public class ManageAuthorBookController implements WebMvcConfigurer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/manageAuthorBook";
+        return "redirect:/admin/manageAuthorBook";
+    }
+
+    @PostMapping(value = "/logout", params="logoutBtn")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
     }
 }

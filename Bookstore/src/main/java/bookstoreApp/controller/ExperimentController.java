@@ -62,8 +62,8 @@ private ReportOutOfStockService reportOutOfStock;
         role.setId(new Long(1));
         role.setName("administrator");
 
-        deleteUser();
-        updateUser();
+       // deleteUser();
+       // updateUser();
 
     }
 
@@ -72,19 +72,6 @@ private ReportOutOfStockService reportOutOfStock;
     System.out.println("******************************"+authorBookDtos.size()+"*******************");
     }
 
-    /*
-        private void sellBook() {
-            SaleBookDto saleBookDto = new SaleBookDto();
-            saleBookDto.bookId = new Long(1);
-            saleBookDto.authorId = new Long(1);
-            saleBookDto.saleQunatity = 20;
-            try {
-               authorBookService.sellBookFromAuthor(saleBookDto);
-            } catch (LimittedStockException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    */
     private void updateAuthor() {
         AuthorDto authorDto = new AuthorDto();
         authorDto.id = new Long(1);
@@ -159,29 +146,29 @@ private ReportOutOfStockService reportOutOfStock;
     }
 
     public void addRoles(){
-        Role adminRole = new Role("administrator");
-        Role empRole = new Role("employee");
+        Role adminRole = new Role("ADMINISTRATOR");
+        Role empRole = new Role("EMPLOYEE");
         roleRepository.save(adminRole);
         roleRepository.save(empRole);
     }
 
     public void addUsers(){
         UserDto admin = new UserDto();
-        admin.username= "mamiIubita@yahoo.com";
-        admin.password= "Limbric3#";
-        admin.role = "administrator";
+        admin.username= "administrator@yahoo.com";
+        admin.password= "Administrator1#";
+        admin.role = "ADMINISTRATOR";
         authenticationService.register(admin);
 
         UserDto employ1 = new UserDto();
-        employ1.username= "tatiIubit@yahoo.com";
-        employ1.password= "Limbric3#";
-        employ1.role = "employee";
+        employ1.username= "employee@yahoo.com";
+        employ1.password= "Employee1#";
+        employ1.role = "EMPLOYEE";
         authenticationService.register(employ1);
 
         UserDto employ2 = new UserDto();
         employ2.username= "frateIubit@yahoo.com";
         employ2.password= "Limbric3#";
-        employ2.role = "employee";
+        employ2.role = "EMPLOYEE";
         authenticationService.register(employ2);
 
     }
@@ -195,7 +182,7 @@ private ReportOutOfStockService reportOutOfStock;
         userDto.id = new Long(1);
         userDto.username="mami e frumoasa";
         userDto.password="Lumina2#";
-        userDto.role="administrator";
+        userDto.role="ROLE_EMPLOYEE";
         userService.update(userDto);
     }
 

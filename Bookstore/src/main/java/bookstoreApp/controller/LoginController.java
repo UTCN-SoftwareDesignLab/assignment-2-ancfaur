@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
@@ -24,10 +23,6 @@ public class LoginController implements WebMvcConfigurer { ;
         this.authenticationService = authenticationService;
     }
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
-    }
 
     @GetMapping()
     public String userForm(Model model) {
@@ -65,10 +60,11 @@ public class LoginController implements WebMvcConfigurer { ;
         return nextPage;
     }
 
+
     private String decideBasedOnRole(UserDto userDto){
         switch(userDto.role){
-            case "employee": return "redirect:/employeeMenu";
-            case "administrator": return "redirect:/adminMenu";
+            case "employee": return "redirect:/empl/employeeMenu";
+            case "administrator": return "redirect:/admin/adminMenu";
             default: return "login";
         }
     }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Author Management</h1>
-<form action="#" th:action="@{/manageAuthorBook}"  th:object="${authorDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/admin/manageAuthorBook}"  th:object="${authorDto}" method="post">
     <p>If update, introduce id: <input type="text" th:field="*{id}" /></p>
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
@@ -17,20 +17,20 @@
 </form>
 <br />
 
-<form action="#" th:action="@{/manageAuthorBook}" th:object="${authorDto}" method="post">
+<form autocomplete="off" action="#" th:action="@{/admin/manageAuthorBook}" th:object="${authorDto}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
     <p><input type="submit" name="deleteAuthorBtn" value="Delete author" /></p>
 </form>
 <br />
 
 
-<form action="#" th:action="@{/manageAuthorBook/showAuthors}" method="post">
+<form  action="#" th:action="@{/admin/manageAuthorBook/showAuthors}" method="post">
     <p><input type="submit" name="showAuthorsBtn" value="Show authors" /></p>
 </form>
 <br />
 
 <h1>Book Management</h1>
-<form action="#" th:action="@{/manageAuthorBook}" th:object="${bookDto}"  method="post">
+<form autocomplete="off" action="#" th:action="@{/admin/manageAuthorBook}" th:object="${bookDto}"  method="post">
     <p>If update, introduce book id: <input type="text" th:field="*{id}" /></p>
     <p>Author id: <input type="text" th:field="*{authorId}" /></p>
     <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
@@ -48,25 +48,29 @@
 </form>
 <br />
 
-<form action="#" th:action="@{manageAuthorBook}" th:object="${bookDto}"  method="post">
+<form  action="#" th:action="@{/admin/manageAuthorBook}" th:object="${bookDto}"  method="post">
     <p>Book id: <input type="text" th:field="*{id}" /></p>
     <p><input type="submit" name="deleteBookBtn" value="Delete book" /></p>
 </form>
 <br />
 
-<form action="#" th:action="@{/manageAuthorBook/showBooks}" method="post">
+<form action="#" th:action="@{/admin/manageAuthorBook/showBooks}" method="post">
     <p><input type="submit" name="showBooksBtn" value="Show books" /></p>
 </form>
 <br />
 
 
-<form action="#" th:action="@{/manageAuthorBook}" method="post">
+<form action="#" th:action="@{/admin/manageAuthorBook}" method="post">
     <select name="formatType">
         <option th:each="format : ${formats}" th:text="${format}"></option>
     </select>
     <p><input type="submit" name="generateReportsBtn" value="Generate reports" /></p>
 </form>
 <br />
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" name="logoutBtn" value="Log Out"/>
+</form>
 
 </body>
 </html>

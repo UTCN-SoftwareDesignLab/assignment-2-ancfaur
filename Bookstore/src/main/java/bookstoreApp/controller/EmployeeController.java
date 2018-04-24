@@ -7,6 +7,9 @@ import bookstoreApp.service.authorBook.AuthorBookService;
 import bookstoreApp.service.filter.FilterBookService;
 import bookstoreApp.service.sale.LimittedStockException;
 import bookstoreApp.service.sale.SaleService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,14 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/employeeMenu")
+@RequestMapping(value="empl/employeeMenu")
 public class EmployeeController implements WebMvcConfigurer {
     private AuthorBookService authorBookService;
     private SaleService saleService;
@@ -32,10 +36,6 @@ public class EmployeeController implements WebMvcConfigurer {
         this.saleService = saleService;
         this.filterBookService = filterBookService;
 
-    }
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/employeeMenu").setViewName("employeeMenu");
     }
 
     @GetMapping()
@@ -75,4 +75,12 @@ public class EmployeeController implements WebMvcConfigurer {
         return "bookTable";
     }
 
+    @PostMapping(value = "/logout", params="logoutBtn")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
 }

@@ -23,6 +23,17 @@ public class BookDto {
     @Min(value = 0, message = "The price should be a positive integer")
     public float price;
 
+    public BookDto(){}
+
+    public BookDto(Long authorId, String name, String genre, String isbn, int quantity, float price){
+        this.authorId = authorId;
+        this.name = name;
+        this.genre = genre;
+        this.isbn = isbn;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "BookDto{" +

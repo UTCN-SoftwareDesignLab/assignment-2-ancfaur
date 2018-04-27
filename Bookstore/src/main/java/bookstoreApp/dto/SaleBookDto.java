@@ -6,8 +6,9 @@ public class SaleBookDto {
     public Long bookId;
     @Min(value = 1, message = "The quantity should be a strictly positive integer")
     public int saleQuantity;
-
     public float price;
+
+    public SaleBookDto(){}
 
     public int getSaleQuantity() {
         return saleQuantity;

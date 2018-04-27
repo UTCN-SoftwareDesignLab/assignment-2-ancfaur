@@ -1,7 +1,6 @@
 package bookstoreApp.service.authorBook;
 
 import bookstoreApp.converter.BookAuthorConverter;
-import bookstoreApp.converter.BookAuthorConverterImpl;
 import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
@@ -21,15 +20,15 @@ import java.util.Set;
 @Service
 @Transactional
 public class AuthorBookServiceImpl implements AuthorBookService {
-    AuthorRepository authorRepository;
-    BookRepository bookRepository;
-    BookAuthorConverter bookAuthorConverter;
+    private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
+    private BookAuthorConverter bookAuthorConverter;
 
     @Autowired
-    public AuthorBookServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public AuthorBookServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository, BookAuthorConverter bookAuthorConverter) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
-        this.bookAuthorConverter = new BookAuthorConverterImpl();
+        this.bookAuthorConverter = bookAuthorConverter;
     }
 
     @Override
@@ -51,11 +50,12 @@ public class AuthorBookServiceImpl implements AuthorBookService {
     }
 
     @Override
-    public void createAuthor(AuthorDto authorDTO) {
+    public AuthorDto createAuthor(AuthorDto authorDTO) {
         Set<Book> books = new HashSet<>();
         Author author = bookAuthorConverter.fromAuthorDtoToAuthor(authorDTO);
         author.setBooks(books);
-        authorRepository.save(author);
+        Author back =authorRepository.save(author);
+        return bookAuthorConverter.fromAuthorToAuthorDto(author);
     }
 
     @Override
@@ -80,6 +80,7 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         authorRepository.save(author);
     }
 
+    @Override
     public void removeBookFromAuthor(Long bookId){
         Book book = bookRepository.findById(bookId).orElse(null);
         Author author = authorRepository.findById(book.getAuthor().getId()).orElse(null);
@@ -87,12 +88,13 @@ public class AuthorBookServiceImpl implements AuthorBookService {
         authorRepository.save(author);
     }
 
+    @Override
     public void updateBookFromAuthor(BookDto bookDto){
-        Book oldRecord = bookRepository.findById(bookDto.id).orElse(null);
         removeBookFromAuthor(bookDto.id);
         addBookToAuthor(bookDto);
     }
 
+     @Override
      public List<AuthorBookDto> findAllBooksAuthors(){
        List<AuthorBookDto> authorBookDtos = new ArrayList<>();
        List<Book> books = bookRepository.findAll();
@@ -102,5 +104,39 @@ public class AuthorBookServiceImpl implements AuthorBookService {
        return authorBookDtos;
      }
 
+    @Override
+    public List<AuthorDto> findAuthorsByName(String name) {
+        List<Author> authors = authorRepository.findByName(name);
+        List<AuthorDto> authorDtos = new ArrayList<>();
+        for(Author author:authors){
+            authorDtos.add(bookAuthorConverter.fromAuthorToAuthorDto(author));
+        }
+        return authorDtos;
+    }
+
+    @Override
+    public List<BookDto> findBooksForAuthor(Long authorId) {
+        Author author = authorRepository.findById(authorId).orElse(null);
+        Set<Book> books = author.getBooks();
+        List<BookDto> bookDtos = new ArrayList<>();
+        for(Book book:books){
+            bookDtos.add(bookAuthorConverter.fromBookToBookDto(book));
+        }
+        return bookDtos;
+    }
+
+    @Override
+    public BookDto findBookByIsbn(String isbn){
+        Book book = bookRepository.findByIsbn(isbn);
+        return bookAuthorConverter.fromBookToBookDto(book);
+    }
+
+    @Override
+    public void deleteAll() {
+        List<Author> authors = authorRepository.findAll();
+        for (Author author:authors){
+            deleteAuthor(author.getId());
+        }
+    }
 
 }

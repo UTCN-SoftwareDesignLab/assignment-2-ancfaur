@@ -7,6 +7,12 @@ public class AuthorDto {
     @Pattern(regexp = "^[a-zA-Z\\s]+", message="Author name is invalid, it should only contain letters")
     public String name;
 
+    public AuthorDto(){}
+
+    public AuthorDto(String name){
+        this.name= name;
+    }
+
     public Long getId() {
         return id;
     }

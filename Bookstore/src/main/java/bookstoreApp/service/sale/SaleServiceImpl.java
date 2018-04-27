@@ -8,7 +8,10 @@ import bookstoreApp.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class SaleServiceImpl implements SaleService {
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
@@ -16,7 +19,7 @@ public class SaleServiceImpl implements SaleService {
     @Autowired
     public SaleServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository){
         this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
+        this.authorRepository= authorRepository;
     }
 
 
@@ -28,12 +31,12 @@ public class SaleServiceImpl implements SaleService {
                     + "required ="+saleBookDto.saleQuantity+"\n"
             ));
         }else{
-            Author author = authorRepository.findById(book.getAuthor().getId()).orElse(null);
+            Author author = book.getAuthor();
             author.removeBook(book);
             book.setQuantity(book.getQuantity() - saleBookDto.saleQuantity);
             author.addBook(book);
             authorRepository.save(author);
-            return book.getPrice()*saleBookDto.saleQuantity;
+            return (book.getPrice()*saleBookDto.saleQuantity);
         }
     }
 }

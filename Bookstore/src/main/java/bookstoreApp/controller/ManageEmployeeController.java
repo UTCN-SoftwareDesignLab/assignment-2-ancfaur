@@ -2,7 +2,6 @@ package bookstoreApp.controller;
 
 import bookstoreApp.constants.ApplicationConstants;
 import bookstoreApp.dto.UserDto;
-import bookstoreApp.service.user.AuthenticationService;
 import bookstoreApp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,12 +21,10 @@ import java.util.List;
 @Controller
 @RequestMapping(value="/admin/manageEmployee")
 public class ManageEmployeeController implements WebMvcConfigurer {
-    AuthenticationService authenticationService;
     UserService userService;
 
     @Autowired
-    public ManageEmployeeController(AuthenticationService authenticationService, UserService userService){
-        this.authenticationService = authenticationService;
+    public ManageEmployeeController(UserService userService){
         this.userService = userService;
 }
 
@@ -46,7 +43,7 @@ public class ManageEmployeeController implements WebMvcConfigurer {
             return "manageEmployee";
         }
         userDto.role= selRole;
-        authenticationService.register(userDto);
+        userService.register(userDto);
         return "redirect:/admin/manageEmployee";
     }
 

@@ -1,4 +1,5 @@
 package bookstoreApp.service.authorBook;
+
 import bookstoreApp.dto.AuthorBookDto;
 import bookstoreApp.dto.AuthorDto;
 import bookstoreApp.dto.BookDto;
@@ -10,7 +11,7 @@ public interface AuthorBookService {
 
     AuthorDto findByIdAuthor(Long id);
 
-    void createAuthor(AuthorDto authorDto);
+    AuthorDto createAuthor(AuthorDto authorDto);
 
     void deleteAuthor(Long id);
 
@@ -23,4 +24,12 @@ public interface AuthorBookService {
     void updateBookFromAuthor(BookDto bookDto);
 
     List<AuthorBookDto> findAllBooksAuthors();
+
+    List<AuthorDto> findAuthorsByName(String name);
+
+    List<BookDto> findBooksForAuthor(Long authorId);
+
+    void deleteAll();
+
+    BookDto findBookByIsbn(String isbn);
 }

@@ -42,7 +42,7 @@ public class PdfFormater implements Formater {
             contentStream.newLine();
             bookNo++;
         }
-        finishCurrentContentStream(contentStream);
+        if (contentStream!=null) finishCurrentContentStream(contentStream);
 
         Date date = new Date();
         String fileName =date.toString().replace(":", " ");

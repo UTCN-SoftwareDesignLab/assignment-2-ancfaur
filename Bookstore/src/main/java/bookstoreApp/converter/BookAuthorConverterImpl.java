@@ -16,6 +16,7 @@ public class BookAuthorConverterImpl implements BookAuthorConverter {
     }
 
     public BookDto fromBookToBookDto(Book book){
+        if (book==null) return null;
         BookDto bookDto = new BookDto();
         bookDto.id = book.getId();
         bookDto.genre = book.getGenre();
@@ -23,7 +24,7 @@ public class BookAuthorConverterImpl implements BookAuthorConverter {
         bookDto.name = book.getName();
         bookDto.price = book.getPrice();
         bookDto.isbn = book.getIsbn();
-        bookDto.authorId = bookDto.authorId;
+        bookDto.authorId = book.getAuthor().getId();
         return bookDto;
     }
 
@@ -34,6 +35,7 @@ public class BookAuthorConverterImpl implements BookAuthorConverter {
     }
 
     public AuthorDto fromAuthorToAuthorDto(Author author){
+        if (author==null) return null;
         AuthorDto authorDto = new AuthorDto();
         authorDto.name = author.getName();
         authorDto.id = author.getId();

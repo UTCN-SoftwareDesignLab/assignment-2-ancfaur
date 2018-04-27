@@ -22,9 +22,10 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public UserDto fromUserToUserDto(User user) {
+        if (user==null) return null;
         UserDto userDto = new UserDto();
         userDto.username = user.getUsername();
-        userDto.password = "encoded";
+        userDto.password = user.getPassword();
         userDto.id = user.getId();
         userDto.role = user.getRoles().get(0).getName();
         return userDto;

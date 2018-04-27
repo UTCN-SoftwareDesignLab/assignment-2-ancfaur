@@ -7,6 +7,7 @@ import bookstoreApp.service.authorBook.AuthorBookService;
 import bookstoreApp.service.filter.FilterBookService;
 import bookstoreApp.service.sale.LimittedStockException;
 import bookstoreApp.service.sale.SaleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -31,6 +32,7 @@ public class EmployeeController implements WebMvcConfigurer {
     private SaleService saleService;
     private FilterBookService filterBookService;
 
+    @Autowired
     public EmployeeController(AuthorBookService authorBookService, SaleService saleService, FilterBookService filterBookService){
         this.authorBookService = authorBookService;
         this.saleService = saleService;
